@@ -14,6 +14,8 @@ The codebase is organized into modular directories to separate data processing, 
 fashion-mnist-classifier/
 ├── app/
 │   └── streamlit_app.py   # Interactive web interface for inference
+├── data/                  # Dataset storage and management
+├── models/                # Saved model weights and checkpoints
 ├── notebooks/
 │   └── exploration.ipynb  # Exploratory data analysis and prototyping
 ├── src/
@@ -28,5 +30,7 @@ fashion-mnist-classifier/
 │   ├── test_data.py       # Unit tests for data module
 │   ├── test_model.py      # Unit tests for model architecture
 │   └── test_predict.py    # Unit tests for inference pipeline
+├── .gitignore             # Git ignore rules
+├── requirements.txt       # Project dependencies
 └── README.md
 ```
