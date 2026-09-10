@@ -34,3 +34,17 @@ fashion-mnist-classifier/
 ├── requirements.txt       # Project dependencies
 └── README.md
 ```
+
+## ML Pipeline
+
+```mermaid
+flowchart TD
+    A[Fashion-MNIST dataset] --> B[data.py<br/>load, transform, batch]
+    B --> C[model.py<br/>CNN architecture]
+    C --> D[train.py<br/>training loop]
+    D --> E[models/fashion_mnist_cnn.pt<br/>saved checkpoint]
+    D --> F[visualize.py<br/>confusion matrix, sample grid, training curve]
+    F --> G[outputs/ plots]
+    E --> H[predict.py<br/>load model, run inference]
+    H --> I[streamlit_app.py<br/>upload image, get prediction]
+```
