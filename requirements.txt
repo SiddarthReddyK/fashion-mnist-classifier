@@ -1,7 +1,8 @@
-torch
-torchvision
-matplotlib
-seaborn
-streamlit
-pillow
-pytest
+torch==2.12.0
+torchvision==0.27.0
+numpy==2.4.4
+matplotlib==3.10.8
+seaborn==0.13.2
+streamlit==1.63.0
+pillow==12.1.1
+pytest==9.1.1
