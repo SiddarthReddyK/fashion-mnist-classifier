@@ -13,6 +13,9 @@ def train_model(epochs=5, batch_size=64, lr=0.001, save_path="models/fashion_mni
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(),lr=lr)
 
+    losses = []       
+    accuracies = []
+     
     for epoch in range(epochs):
         model.train()
         running_loss = 0.0
@@ -33,13 +36,23 @@ def train_model(epochs=5, batch_size=64, lr=0.001, save_path="models/fashion_mni
 
         avg_loss = running_loss / len(train_loader)
         accuracy = 100* correct / total
+        losses.append(avg_loss)         # NEW
+        accuracies.append(accuracy)
         print(f"Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f} - Accuracy: {accuracy:.2f}%")
 
     torch.save(model.state_dict(), save_path)
     print(f"Model saved to {save_path}")
 
-    return model, test_loader
+    return model, test_loader, losses, accuracies
 
 if __name__ == "__main__":
-    train_model()
+    from src.visualize import plot_training_curve, plot_confusion_matrix, plot_sample_predictions
 
+    class_names = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
+                   "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
+
+    model, test_loader, losses, accuracies = train_model()
+
+    plot_training_curve(losses, accuracies)
+    plot_confusion_matrix(model, test_loader, class_names)
+    plot_sample_predictions(model, test_loader, class_names)
